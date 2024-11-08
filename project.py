@@ -7,32 +7,39 @@ class Product():
         self.stock_quantity = stock_quantity
 
     def details(self):
-        return f"Product_id: {self.product_id} ,Product name: {self.product_name}, Price: {self.price}$,Category: {self.category} Stock quantity: {self.stock_quantity}"
-    
+        return f"Product_id: {self.product_id} ,Product name: {self.product_name}, Price: {self.price}$,Category: {self.category} , Stock quantity: {self.stock_quantity}"
+
+
+
+# product details:
 class InventoryManagementSystem():
     def __init__(self):
         self.products = {}
-    
+        self.low_stock = 5   
+    # Admin can add product
     def add_product(self):
-        product_id = int(input("Enter product id: "))
-        product_name = input("Enter product name: ")
-        price = float(input("Enter product price: "))
-        category = input("Enter category: ")
-        stock_quantity = int(input("Enter stock quantity: "))  
-        product = Product(product_id, product_name, price,category , stock_quantity)
-        self.products[product_id] = product
-        print(f"Product '{product_name}' added successfully")
-
+        while True:
+            print("When you enter zero it means that you want don't add any product")
+            product_id = int(input("Enter product id: "))
+            if product_id == 0:
+                break
+            else:
+                product_name = input("Enter product name: ")
+                price = float(input("Enter product price: "))
+                category = input("Enter category: ")
+                stock_quantity = int(input("Enter stock quantity: "))  
+                
+                
+                product = Product(product_id, product_name, price,category , stock_quantity)
+                self.products[product_id] = product
+                print(f"Product '{product_name}' added successfully")
+        
+    # Admin and User both can view product details:
     def view_product(self):
-        product_id = int(input("Enter product id: "))
-        if product_id not in self.products:
-            print("\nProduct not in inventory")
-            return None
-
-        else: 
-            print(self.products[product_id].details())
-            
-    
+        for product_name in self.products:
+            print(self.products[product_name].details())
+        
+    # Admin can edit/update product:
     def edit_product(self):
         product_id = int(input("Enter product id: "))
         if product_id in self.products:
@@ -54,6 +61,7 @@ class InventoryManagementSystem():
         else:
             print("Product not found.")
 
+    # Admin delete product:
     def delete_product(self):
         product_id = int(input("Enter product id: "))
         if product_id in self.products:
@@ -63,6 +71,7 @@ class InventoryManagementSystem():
         else:
             print("Product not found.")
 
+# Login system:
 class User():
     def __init__(self, username, password, role):
         self.username = username
@@ -84,6 +93,7 @@ class Authentication():
         if username in self.users and self.users[username].password == password:
             print(f"Welcome {username}")
             return self.users[username]
+            
         
         else:
             print("invalid credentials! Please try again ")
