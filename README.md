@@ -2,7 +2,7 @@
 #          INVENTORY MANAGEMENT SYSTEM
  Build a console-based system that manages inventory for a small business. The system should allow admins to create, update, view, and delete products in the inventory while keeping track of stock levels and handling multiple users with role-based permissions.
 
-<!-- Project -->
+# project
 class Product():
     def __init__(self,product_id,product_name,price,category,stock_quantity):
         self.product_id = product_id
@@ -80,7 +80,7 @@ class User():
         self.username = username
         self.password = password
         self.role = role 
-
+# Authentication:
 class Authentication():
     def __init__(self):
         self.users = {
@@ -100,7 +100,7 @@ class Authentication():
         else:
             print("invalid credentials! Please try again ")
             return None
-        
+# Main menu:
 def main_menu():
     auth = Authentication()
     ims = InventoryManagementSystem()
