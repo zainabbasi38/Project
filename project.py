@@ -9,8 +9,6 @@ class Product():
     def details(self):
         return f"Product_id: {self.product_id} ,Product name: {self.product_name}, Price: {self.price}$,Category: {self.category} , Stock quantity: {self.stock_quantity}"
 
-
-
 # product details:
 class InventoryManagementSystem():
     def __init__(self):
@@ -94,7 +92,6 @@ class Authentication():
             print(f"Welcome {username}")
             return self.users[username]
             
-        
         else:
             print("invalid credentials! Please try again ")
             return None
